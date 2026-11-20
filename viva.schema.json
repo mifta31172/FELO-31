@@ -1,0 +1,12 @@
+{ "$schema":"http://json-schema.org/draft-07/schema#","title":"VivaQuestion","type":"object",
+  "required":["id","subject","topicId","original","sources","status"],
+  "properties":{
+   "id":{"type":"string"},"subject":{"type":"string"},"topicId":{"type":"string"},
+   "original":{"type":"string","description":"Exact wording from source. Never edited."},
+   "sourceAnswer":{"type":["string","null"]},
+   "verifiedAnswer":{"type":["string","null"]},
+   "teachers":{"type":"array","items":{"type":"string"},"description":"Only if named in source; else empty => 'Teacher not specified'"},
+   "exam":{"type":"array","items":{"enum":["final-prof","clinical-viva","ward-viva","osce","mrcs","mrcp","fcps","md-ms"]}},
+   "sources":{"type":"array","items":{"type":"object","required":["file","importedOn"],"properties":{"file":{"type":"string"},"page":{"type":["integer","null"]},"importedOn":{"type":"string"}}}},
+   "references":{"type":"array","items":{"type":"object","properties":{"book":{"type":"string"},"edition":{"type":"string"},"chapter":{"type":"string"},"page":{"type":["string","null"],"description":"only if verified"}}}},
+   "status":{"enum":["imported","needs-review","verified","archived"]}}}
